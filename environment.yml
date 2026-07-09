@@ -1,0 +1,21 @@
+name: public-safety-service-demand-intelligence
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - numpy
+  - scikit-learn
+  - matplotlib
+  - pyarrow
+  - sqlalchemy
+  - geopandas
+  - shapely
+  - openpyxl
+  - streamlit
+  - pip
+  - pip:
+      - pymongo
+      - pyspark
+      - python-dotenv
