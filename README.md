@@ -2,7 +2,7 @@
 
 End-to-end portfolio analytics project for public safety service-demand intelligence, operational workload forecasting, command-center visibility, and product/service analytics.
 
-This project consolidates large service-event metadata with weather, calendar, and geographic zone metadata; cleans and structures the data; builds a SQLite analytics layer; creates PySpark-compatible transformations; trains clustering and demand models; and exports Hex-ready, Tableau-ready, Excel-ready, and Streamlit-ready outputs.
+This project consolidates large service-event metadata with weather, calendar, and geographic zone metadata; cleans and structures the data; builds a SQLite analytics layer; creates PySpark-compatible transformations; trains clustering and demand models; and exports Tableau-ready, Excel-ready, and Streamlit-ready outputs.
 
 ## Motorola Solutions Alignment
 
@@ -14,8 +14,8 @@ It demonstrates:
 - Business analytics: workload-risk scoring, demand concentration analysis, category mix reporting, and executive KPIs.
 - Data engineering: local raw/interim/processed zones, schema detection, Parquet, SQLite, and repeatable scripts.
 - Machine learning: zone clustering, baseline forecasting, Random Forest high-demand prediction, and MLP comparison.
-- Reporting: Hex-ready CSVs, Tableau-ready CSVs, Excel scenario planner, Streamlit app, and generated memos.
-- Technical depth: PySpark path, MongoDB raw storage helper, R validation, Docker, Kubernetes, AWS, and GCP support files.
+- Reporting: Tableau-ready CSVs, Excel scenario planner, Streamlit app, and generated memos.
+- Technical depth: PySpark path, R validation, Docker, Kubernetes, AWS, and GCP support files.
 
 ## Business Problem
 
@@ -49,10 +49,10 @@ Raw CSV/GeoJSON
   -> calendar + weather + geography joins
   -> fact_service_events + zone_hour_features
   -> SQLite analytics layer
-  -> SQL exports + Hex CSVs + Tableau CSVs
+  -> Tableau CSVs
   -> clustering + high-demand prediction + MLP comparison
   -> Excel planner + Streamlit app + memos/charts
-  -> optional PySpark, MongoDB, R, Docker, Kubernetes, AWS, GCP
+  -> optional PySpark, R, Docker, Kubernetes, AWS, GCP
 ```
 
 ## Setup
@@ -132,7 +132,6 @@ python -m src.database.run_sqlite_queries
 python -m src.models.train_cluster_model
 python -m src.models.train_demand_model
 python -m src.models.train_deep_learning_model
-python -m src.reporting.build_hex_outputs
 python -m src.reporting.build_tableau_outputs
 python -m src.reporting.build_excel_planner
 ```
@@ -172,9 +171,6 @@ Tables include `fact_service_events`, `dim_date`, `dim_location`, `dim_service_c
 
 `src/processing/spark_transform.py` demonstrates scalable zone-hour aggregation. If PySpark is unavailable, it writes a clear report and uses a local pandas fallback so the portfolio remains runnable without paid infrastructure.
 
-## MongoDB
-
-`src/ingest/load_to_mongodb.py` stores raw/semi-structured records in MongoDB when MongoDB and `pymongo` are available. The core analytics pipeline does not require MongoDB.
 
 ## Modeling
 
@@ -187,9 +183,7 @@ Outputs and honest evaluation notes are written to `outputs/models/` and `output
 
 ## Reporting Outputs
 
-- Hex: `outputs/hex/`
 - Tableau: `outputs/tableau/`
-- SQL query exports: `outputs/sql/`
 - Excel scenario planner: `outputs/excel/public_safety_scenario_planner.xlsx`
 - Charts: `outputs/charts/`
 - Memos: `outputs/memo/`
@@ -208,7 +202,7 @@ The public dashboard reads the committed `data/app/` assets so it can run withou
 docker compose up --build
 ```
 
-Docker Compose includes the Streamlit app and MongoDB. SQLite remains file-based and mounted through `data/`.
+Docker Compose includes the Streamlit app. SQLite remains file-based and mounted through `data/`.
 
 ## Kubernetes, AWS, and GCP
 
@@ -229,11 +223,11 @@ Public metadata can contain missing timestamps, missing coordinates, inconsisten
 - Run full mode on the complete dataset and compare results against sample mode.
 - Add richer event/calendar context if available.
 - Validate geography joins with authoritative zone definitions.
-- Publish the Hex report and Tableau workbook using generated CSVs.
+- Publish the Tableau workbook using generated CSVs.
 - Add CI checks for schema detection and core pipeline execution.
 
 ## Resume Bullets
 
-- Built a public safety service-demand analytics platform using Python, SQLite, PySpark, Hex, and Excel to clean, integrate, and analyze large-scale service-event metadata.
+- Built a public safety service-demand analytics platform using Python, SQLite, PySpark, Streamlit, Tableau-ready outputs, and Excel to clean, integrate, and analyze large-scale service-event metadata.
 - Developed clustering and ML workflows to segment zones, identify demand drivers, and forecast high-volume service periods.
-- Created Hex and Excel reporting tools translating workload-risk indicators into product/service and resource-planning recommendations.
+- Created Streamlit and Excel reporting tools translating workload-risk indicators into product/service and resource-planning recommendations.
