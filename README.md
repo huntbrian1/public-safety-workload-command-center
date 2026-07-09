@@ -2,7 +2,7 @@
 
 A portfolio-grade analytics platform that turns large-scale public safety service-event records into workload visibility, zone-hour demand patterns, timing insights, geographic coverage views, and resource-planning signals.
 
-**Live dashboard:** https://public-safety-workload-command-center-fqbwj4qintqr5ueqsfdbfm.streamlit.app/
+**Live dashboard:** https://public-safety-workload-command-center-apzhvl2n7whz269ys79sns.streamlit.app/
 
 ## What This Project Shows
 
