@@ -2,7 +2,7 @@
 
 ## Data Ingestion
 
-The pipeline validates four local files: service-event metadata, hourly weather, beat/zone lookup CSV, and beat/zone GeoJSON. Validation records file sizes, readability, and detected columns.
+The pipeline validates service-event metadata, hourly weather, beat/zone lookup data, and beat/zone GeoJSON. Validation records file sizes, readability, and detected columns.
 
 ## Schema Detection
 
@@ -10,19 +10,15 @@ Raw call columns are mapped to canonical analytical fields such as event ID, eve
 
 ## Cleaning
 
-The call cleaner parses timestamps, standardizes text fields, normalizes categories, cleans coordinates, creates zone identifiers, drops duplicate event IDs, and writes Parquet plus a preview CSV.
+The call cleaner parses timestamps, standardizes text fields, normalizes categories, cleans coordinates, creates zone identifiers, audits duplicate event IDs, and writes model-ready outputs.
 
-## Weather, Calendar, and Geography Integration
+## Weather, Calendar, And Geography Integration
 
-Weather is parsed from an Open-Meteo style CSV and joined to service events by hourly timestamp. Calendar features include weekday, month, quarter, season, weekend, holiday, business-hour, and after-hours flags. Geography uses beat/zone lookup and, when available, GeoJSON centroids.
+Weather is joined to service-demand records by hourly timestamp. Calendar features include weekday, month, quarter, season, weekend, holiday, business-hour, and after-hours flags. Geography uses beat/zone lookup metadata and mapped beat polygons where available.
+`n
+## PySpark Feature Engineering
 
-## SQLite Modeling
-
-Cleaned outputs are loaded into SQLite tables and indexed by date, hour, zone, and category. SQL query exports support demand, workload risk, category concentration, peak windows, and data quality analysis.
-
-## Feature Engineering
-
-Zone-hour features include target demand, weather context, lagged demand, rolling demand, prior-week demand, category mix shares, and a zone-specific high-demand flag.
+PySpark aggregates cleaned service events to a zone-hour planning grain. Zone-hour features include target demand, weather context, lagged demand, rolling demand, prior-week demand, category mix shares, and high-demand flags.
 
 ## Clustering
 
@@ -30,8 +26,8 @@ KMeans groups zones into business-facing operational demand profiles based on wo
 
 ## Machine Learning
 
-Baseline and Random Forest models predict high-demand zone-hours. An MLP comparison is included when practical and evaluated honestly against simpler methods.
+Baseline, Random Forest, and MLP comparison models evaluate high-demand zone-hour classification. The model outputs are framed as aggregate planning signals, not individual-event predictions.
 
 ## Reporting
 
-Outputs are created for Hex, Tableau, Excel, Streamlit, SQL review, executive memos, and static charts.
+The public presentation layer is the Streamlit workload command center. Excel-ready outputs and generated charts/memos support stakeholder review and scenario planning.

@@ -16,6 +16,5 @@ dependencies:
   - streamlit
   - pip
   - pip:
-      - pymongo
       - pyspark
       - python-dotenv

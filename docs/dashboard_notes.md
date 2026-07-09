@@ -65,7 +65,7 @@ Supported by the period filter:
 Static or sample-based views:
 
 - Service Category Mix is based on `fact_service_events_sample.csv`; its period filter is sample-based and labeled in the app.
-- PySpark proof, Java runtime, duplicate-row QA, and weather-coverage lineage are stable run metadata, not scenario-filtered metrics.
+- PySpark proof, data-quality notes, and weather-coverage lineage are stable run metadata, not scenario-filtered metrics.
 
 ## Stable Spark Lineage
 
@@ -96,3 +96,4 @@ The map renders 55 matched beat polygons. The complete analytic planning layer c
 ## Map Key
 
 The mapped beat coverage section includes a visible color key. The gradient represents total service demand by mapped beat, from lower demand on the left to higher demand on the right. Grey polygons indicate unmatched beats or no mapped demand in the current asset layer.
+

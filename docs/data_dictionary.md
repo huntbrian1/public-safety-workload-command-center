@@ -14,24 +14,20 @@ Zone-level clustering output with cluster ID, business-facing cluster name, work
 
 ## model_predictions
 
-High-demand forecast output with zone, date-hour, actual high-demand label, baseline prediction, ML prediction, predicted probability, and workload-risk score.
+High-demand planning output with zone, date-hour, actual high-demand label, baseline prediction, ML prediction, predicted probability, and workload-risk score.
 
-## Hex Output Files
+## Dashboard App Assets
 
-- `hex_hourly_demand.csv`: demand by weekday and hour.
-- `hex_zone_summary.csv`: zone-level workload summary and risk score.
-- `hex_category_summary.csv`: service category demand and share.
-- `hex_cluster_profiles.csv`: cluster labels and features.
-- `hex_model_predictions.csv`: high-demand model output.
-- `hex_recommendations.csv`: product/service recommendations.
-- `hex_data_quality_summary.csv`: quality metrics.
-- `hex_executive_kpis.csv`: executive KPI strip.
-- `hex_weather_demand_summary.csv`: demand by weather context.
-- `hex_workload_risk_scores.csv`: risk score export.
-
-## Tableau Output Files
-
-Tableau files mirror Hex outputs and add `tableau_geo_map.csv` for map-ready geography.
+- `dashboard_kpis.json`: executive KPI and lineage values.
+- `zone_summary.csv`: all-time zone-level workload summary.
+- `zone_summary_by_period.csv`: month-level zone summaries used by dashboard filters.
+- `map_zone_demand_by_period.csv`: period-aware map demand asset.
+- `hourly_demand.csv`: hour-of-day demand by period and weekday/weekend flag.
+- `day_of_week_demand.csv`: weekday demand by period.
+- `day_hour_heatmap.csv`: zone-hour workload intensity asset.
+- `service_category_mix.csv`: sampled service-category mix asset.
+- `weather_context_summary.csv`: weather-joined demand bands.
+- `seattle_police_beats.geojson`: mapped beat polygons used by the public dashboard.
 
 ## Excel Workbook Tabs
 
