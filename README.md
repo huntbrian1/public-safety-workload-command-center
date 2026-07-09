@@ -58,7 +58,7 @@ The workflow combines:
 - Python data cleaning and feature engineering
 - PySpark full-scale aggregation to zone-hour planning grain
 - Calendar, weather, and geography enrichment
-- KMeans zone segmentation
+- KMeans clustering of existing beats/zones into workload-profile segments
 - Random Forest and MLP model comparison for high-demand period classification
 - Streamlit and Plotly for interactive portfolio presentation
 - Excel-ready exports for reporting workflows
