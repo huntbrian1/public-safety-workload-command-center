@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: public-safety-demand-config
+  namespace: public-safety-demand-intelligence
+data:
+  SAMPLE_MODE: "true"
+  SQLITE_DB_PATH: "data/processed/public_safety_ops.sqlite"
+  LOCAL_TIMEZONE: "America/Los_Angeles"

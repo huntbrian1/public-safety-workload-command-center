@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: public-safety-demand-app
+  namespace: public-safety-demand-intelligence
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: public-safety-demand-app
+  template:
+    metadata:
+      labels:
+        app: public-safety-demand-app
+    spec:
+      containers:
+        - name: streamlit
+          image: public-safety-demand-intelligence:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8501
+          envFrom:
+            - configMapRef:
+                name: public-safety-demand-config
+            - secretRef:
+                name: public-safety-demand-secrets
+          volumeMounts:
+            - name: outputs
+              mountPath: /app/outputs
+      volumes:
+        - name: outputs
+          emptyDir: {}
