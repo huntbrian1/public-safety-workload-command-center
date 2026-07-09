@@ -63,12 +63,12 @@ def load_csv(name: str) -> pd.DataFrame:
 @st.cache_data(show_spinner=False)
 def load_json(name: str) -> dict[str, Any]:
     path = APP_DIR / name
-    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    return json.loads(path.read_text(encoding="utf-8-sig")) if path.exists() else {}
 
 @st.cache_data(show_spinner=False)
 def load_geojson() -> dict[str, Any]:
     path = GEOJSON_PATH if GEOJSON_PATH.exists() else FALLBACK_GEOJSON_PATH
-    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    return json.loads(path.read_text(encoding="utf-8-sig")) if path.exists() else {}
 
 def compact_int(value: Any) -> str:
     if value is None or pd.isna(value): return "Unavailable"
